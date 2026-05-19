@@ -25,6 +25,7 @@ do_column_plots <- function(question, title, reduced = FALSE) {
     likert(
       Group ~ . | Subtable, data = survey[filtered_rows, ],
       as.percent = TRUE,
+      xlab = "Porcentaje",
       ylab = NULL,
       main = NULL,
       strip = FALSE,
@@ -38,6 +39,7 @@ do_column_plots <- function(question, title, reduced = FALSE) {
   count_plot <-
     likert(
       Group ~ . | Subtable, data = survey[filtered_rows, ],
+      xlab = "Respuestas",
       ylab = NULL,
       rightAxis = TRUE,
       main = NULL,
@@ -52,7 +54,7 @@ do_column_plots <- function(question, title, reduced = FALSE) {
   percent_count_plot <-
     as.TwoTrellisColumns5(
       update(percent_plot, rightAxis = FALSE),
-      update(count_plot, ylab.right = "Totals"),
+      update(count_plot, ylab.right = "Total"),
       pw = c(.09, .59, .01, .22, .09)
     )
 
@@ -75,8 +77,9 @@ do_single_plot <- function(question, title) {
     likert(
       Group ~ . | Subtable, data = survey[survey$Question == question, ],
       as.percent = TRUE,
+      xlab = "Porcentaje",
       ylab = NULL,
-      ylab.right = "Totals",
+      ylab.right = "Total",
       main = list(title, fontface = 1),
       strip = FALSE,
       par.strip.text = list(cex = .6, lines = 5),
